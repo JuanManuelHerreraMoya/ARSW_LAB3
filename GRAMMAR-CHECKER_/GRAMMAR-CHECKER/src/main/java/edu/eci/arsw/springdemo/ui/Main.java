@@ -20,5 +20,5 @@ public class Main {
         GrammarChecker gc = ac.getBean(GrammarChecker.class);
         System.out.println(gc.check("la la la "));
     }
-
+    
 }
