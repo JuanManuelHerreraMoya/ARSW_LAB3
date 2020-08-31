@@ -11,4 +11,10 @@
 
     <context:component-scan base-package="edu.eci.arsw" />
     
+    <bean id="miUsuariosDAO" class="edu.eci.arsw.springdemo.EnglishSpellChecker" />        
+    
+    <bean id="Grammar" class="edu.eci.arsw.springdemo.GrammarChecker" > 
+        <property name="udao" ref="miUsuariosDAO"/>            
+    </bean>       
+    
 </beans>
