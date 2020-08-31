@@ -5,6 +5,7 @@
  */
 package edu.eci.arsw.cinema.model;
 
+import edu.eci.arsw.cinema.persistence.CinemaPersistenceException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,13 +27,16 @@ public class Cinema {
         this.functions=functions;
     }
 
-    public CinemaFunction getFunctionByNameAndDate(String name, String date)  {
+    public CinemaFunction getFunctionByNameAndDate(String name, String date) throws CinemaModelException {
         CinemaFunction cinemaF = null;
         for (int i=0;i< functions.size();i++) {
             if (functions.get(i).getMovie().getName().equals(name) && functions.get(i).getDate().equals(date)) {
                 cinemaF= functions.get(i);
                 return  cinemaF;
             }
+        }
+        if (cinemaF == null) {
+            throw new CinemaModelException("The Function Don't exist");
         }
         return cinemaF;
     }
