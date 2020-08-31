@@ -8,9 +8,11 @@ package edu.eci.arsw.cinema.persistence.impl;
 import edu.eci.arsw.cinema.model.Cinema;
 import edu.eci.arsw.cinema.model.CinemaFunction;
 import edu.eci.arsw.cinema.model.Movie;
-import edu.eci.arsw.cinema.persistence.CinemaException;
+import edu.eci.arsw.cinema.services.CinemaException;
 import edu.eci.arsw.cinema.persistence.CinemaPersistenceException;
 import edu.eci.arsw.cinema.persistence.CinemaPersitence;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +22,7 @@ import java.util.Map;
  *
  * @author cristian
  */
+@Service("inMemory")
 public class InMemoryCinemaPersistence implements CinemaPersitence{
     
     private final Map<String,Cinema> cinemas=new HashMap<>();
@@ -37,8 +40,12 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
     }    
 
     @Override
-    public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaException {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaPersistenceException, CinemaException {
+        Cinema cn = getCinema(cinema);
+        CinemaFunction cinemaF =cn.getFunctionByNameAndDate(movieName,date);
+        if (cinemaF != null){
+            cinemaF.buyTicket(row,col);
+        }
     }
 
     @Override

@@ -7,14 +7,18 @@ package edu.eci.arsw.cinema.persistence;
 
 import edu.eci.arsw.cinema.model.Cinema;
 import edu.eci.arsw.cinema.model.CinemaFunction;
+import edu.eci.arsw.cinema.services.CinemaException;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 /**
  *
  * @author cristian
  */
+@Service
 public interface CinemaPersitence {
-    
+
     /**
      * 
      * @param row the row of the seat
@@ -26,7 +30,7 @@ public interface CinemaPersitence {
      * @throws CinemaException if the seat is occupied,
      *    or any other low-level persistence error occurs.
      */
-    public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaException;
+    public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaPersistenceException, CinemaException;
     
     /**
      * 

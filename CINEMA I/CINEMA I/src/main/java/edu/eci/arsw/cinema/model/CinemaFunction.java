@@ -5,7 +5,7 @@
  */
 package edu.eci.arsw.cinema.model;
 
-import edu.eci.arsw.cinema.persistence.CinemaException;
+import edu.eci.arsw.cinema.services.CinemaException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
