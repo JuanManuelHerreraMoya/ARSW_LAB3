@@ -8,10 +8,16 @@ package edu.eci.arsw.cinema.services;
 import edu.eci.arsw.cinema.filters.FilterCinema;
 import edu.eci.arsw.cinema.model.Cinema;
 import edu.eci.arsw.cinema.model.CinemaFunction;
+import edu.eci.arsw.cinema.model.CinemaModelException;
 import edu.eci.arsw.cinema.persistence.CinemaPersistenceException;
 import edu.eci.arsw.cinema.persistence.CinemaPersitence;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -21,23 +27,29 @@ import org.springframework.stereotype.Service;
  *
  * @author cristian
  */
-@Service("cinemaServices")
+@Service("CinemaServices")
 public class CinemaServices {
 
     @Autowired
-    @Qualifier("inMemory")
+    @Qualifier("InMemoryCinemaPersistence")
     CinemaPersitence cps=null;
 
     @Autowired
-    @Qualifier("FilterCinema")
+    @Qualifier("FilterByGender")
     FilterCinema fc=null;
 
-
     public void addNewCinema(Cinema c){
+        try {
+            cps.saveCinema(c);
+        } catch (CinemaPersistenceException ex) {
+            Logger.getLogger(CinemaServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    public Set<Cinema> getAllCinemas(){
-        return null;
+    
+    public Map<String,Cinema> getAllCinemas(){
+        return cps.getCinemas();
     }
+    
     /**
      * 
      * @param name cinema's name
@@ -55,7 +67,7 @@ public class CinemaServices {
     public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaException {
         try{
             cps.buyTicket(row, col, cinema, date, movieName);
-        }catch (CinemaPersistenceException e){
+        }catch (CinemaPersistenceException | CinemaModelException e){
             throw new CinemaException(e.getMessage(), e);
         };
 
@@ -66,16 +78,16 @@ public class CinemaServices {
         try{
             cinemaF = cps.getFunctionsbyCinemaAndDate(cinema,date);
             return cinemaF;
-        }catch (CinemaPersistenceException e){
+        }catch (CinemaPersistenceException | CinemaModelException e){
             throw new CinemaException(e.getMessage(), e);
         }
     }
 
-    public List<CinemaFunction> getFiltereF(String cinema, String date, String filtro) throws CinemaException{
+    public List<CinemaFunction> getFilter(String cinema, String date, String filtro) throws CinemaException{
         try {
             List<CinemaFunction> cinemaF = cps.getFunctionsbyCinemaAndDate(cinema, date);
             return fc.filter(cinemaF, filtro);
-        } catch (CinemaPersistenceException e) {
+        } catch (CinemaPersistenceException | CinemaModelException e) {
             throw new CinemaException(e.getMessage(), e);
         }
     }

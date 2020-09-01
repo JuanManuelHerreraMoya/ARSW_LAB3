@@ -7,6 +7,7 @@ package edu.eci.arsw.cinema.persistence.impl;
 
 import edu.eci.arsw.cinema.model.Cinema;
 import edu.eci.arsw.cinema.model.CinemaFunction;
+import edu.eci.arsw.cinema.model.CinemaModelException;
 import edu.eci.arsw.cinema.model.Movie;
 import edu.eci.arsw.cinema.services.CinemaException;
 import edu.eci.arsw.cinema.persistence.CinemaPersistenceException;
@@ -22,7 +23,7 @@ import java.util.Map;
  *
  * @author cristian
  */
-@Service("inMemory")
+@Service("InMemoryCinemaPersistence")
 public class InMemoryCinemaPersistence implements CinemaPersitence{
     
     private final Map<String,Cinema> cinemas=new HashMap<>();
@@ -40,7 +41,7 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
     }    
 
     @Override
-    public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaPersistenceException, CinemaException {
+    public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaException, CinemaModelException {
         Cinema cn = getCinema(cinema);
         CinemaFunction cinemaF =cn.getFunctionByNameAndDate(movieName,date);
         if (cinemaF != null){
@@ -49,8 +50,20 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
     }
 
     @Override
-    public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) throws CinemaModelException {
+        List<CinemaFunction> functions= new ArrayList<>();
+        for(Map.Entry<String, Cinema> fun : cinemas.entrySet()){
+            Cinema temp = fun.getValue();
+            if(fun.getKey().equals(cinema) && temp.getName().equals(cinema)){
+                List<CinemaFunction> tmpFun = temp.getFunctions();
+                for(CinemaFunction cf: tmpFun){
+                    if(cf.getDate().equals(date)){
+                        functions.add(cf);
+                    }
+                }
+            }
+        }
+        return functions;
     }
 
     @Override
@@ -64,8 +77,13 @@ public class InMemoryCinemaPersistence implements CinemaPersitence{
     }
 
     @Override
-    public Cinema getCinema(String name) throws CinemaPersistenceException {
+    public Cinema getCinema(String name)  {
         return cinemas.get(name);
+    }
+
+    @Override
+    public Map<String,Cinema> getCinemas() {
+        return cinemas;
     }
 
 }

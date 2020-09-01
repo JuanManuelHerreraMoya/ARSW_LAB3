@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("gender")
+@Service("FilterByGender")
 public class FilterByGender implements FilterCinema {
 
     public FilterByGender() {

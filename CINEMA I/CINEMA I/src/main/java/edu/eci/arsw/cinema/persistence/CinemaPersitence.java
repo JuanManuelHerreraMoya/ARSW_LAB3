@@ -7,10 +7,12 @@ package edu.eci.arsw.cinema.persistence;
 
 import edu.eci.arsw.cinema.model.Cinema;
 import edu.eci.arsw.cinema.model.CinemaFunction;
+import edu.eci.arsw.cinema.model.CinemaModelException;
 import edu.eci.arsw.cinema.services.CinemaException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -30,7 +32,7 @@ public interface CinemaPersitence {
      * @throws CinemaException if the seat is occupied,
      *    or any other low-level persistence error occurs.
      */
-    public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaPersistenceException, CinemaException;
+    public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaPersistenceException, CinemaException, CinemaModelException;
     
     /**
      * 
@@ -38,7 +40,7 @@ public interface CinemaPersitence {
      * @param date date
      * @return the list of the functions of the cinema in the given date
      */
-    public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) throws CinemaPersistenceException;
+    public List<CinemaFunction> getFunctionsbyCinemaAndDate(String cinema, String date) throws CinemaPersistenceException, CinemaModelException;
     
     /**
      * 
@@ -54,5 +56,12 @@ public interface CinemaPersitence {
      * @throws  CinemaPersistenceException if there is no such cinema
      */
     public Cinema getCinema(String name) throws CinemaPersistenceException;
+    
+    
+    /**
+     * 
+     * @return All the cinemas
+     */
+    public Map<String,Cinema> getCinemas();
     
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d4feddd9-896e-4b74-a9d3-3e481e9508a7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/CINEMA I/CINEMA I/src/main/java/edu/eci/arsw/cinema/persistence/CinemaPersitence.java" beforeDir="false" afterPath="$PROJECT_DIR$/CINEMA I/CINEMA I/src/main/java/edu/eci/arsw/cinema/persistence/CinemaPersitence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CINEMA I/CINEMA I/src/main/java/edu/eci/arsw/cinema/persistence/impl/InMemoryCinemaPersistence.java" beforeDir="false" afterPath="$PROJECT_DIR$/CINEMA I/CINEMA I/src/main/java/edu/eci/arsw/cinema/persistence/impl/InMemoryCinemaPersistence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CINEMA I/CINEMA I/src/main/java/edu/eci/arsw/cinema/services/CinemaServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/CINEMA I/CINEMA I/src/main/java/edu/eci/arsw/cinema/services/CinemaServices.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="D:\Programas\I\IntelliJ IDEA Community Edition 2020.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1gsvAp5RWMG7RmXNJhzTLyE7sDc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d4feddd9-896e-4b74-a9d3-3e481e9508a7" name="Default Changelist" comment="" />
+      <created>1598915974457</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598915974457</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="390" y="0" width="585" height="728" key="find.popup" timestamp="1598916473400">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="390" y="0" width="585" height="728" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1598916473400" />
+  </component>
+</project>

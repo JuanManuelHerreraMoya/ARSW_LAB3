@@ -8,6 +8,7 @@ import edu.eci.arsw.cinema.persistence.CinemaPersitence;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 @Service
 public class AnotherCinemaPersistence implements CinemaPersitence {
 
@@ -30,5 +31,10 @@ public class AnotherCinemaPersistence implements CinemaPersitence {
     @Override
     public Cinema getCinema(String name) throws CinemaPersistenceException {
         return null;
+    }
+
+    @Override
+    public Map<String, Cinema> getCinemas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
