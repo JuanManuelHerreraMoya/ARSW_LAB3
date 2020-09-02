@@ -1,18 +1,21 @@
-package edu.eci.arsw.cinema;
+package edu.eci.arsw.cinema.main;
 
 import edu.eci.arsw.cinema.model.Cinema;
 import edu.eci.arsw.cinema.model.CinemaFunction;
 import edu.eci.arsw.cinema.model.Movie;
+import edu.eci.arsw.cinema.services.CinemaException;
 import edu.eci.arsw.cinema.services.CinemaServices;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CinemaException {
         
         
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("cinemaContext.xml");
@@ -22,9 +25,11 @@ public class Main {
         registerCinemas("LAB3 Cinemas",cine);
         consultCinemas(cine);
         obtainFuntionByCinema("LAB3 Cinemas",cine);
-        //buyTickets(5, 5, cine, "2020-9-1 15:30", "The Gentleman");
-        //bookTickets(5, 5, cine, "2020-10-30 15:30", "Viuda Negra");
-          
+        buyTickets(5, 5, "LAB3 Cinemas", "2020-9-1 15:30", "The Gentleman",cine);
+        buyTickets(1, 5, "LAB3 Cinemas", "2020-9-1 15:30", "The Gentleman",cine);
+        buyTickets(1, 1, "LAB3 Cinemas", "2020-9-1 15:30", "The Gentleman",cine);
+        filterByGender("Action","LAB3 Cinemas", "2020-9-1 15:30",cine);
+        filterByAvailabity("2","LAB3 Cinemas", "2020-9-1 15:30",cine);
     }
     
     public static void registerCinemas(String cinema,CinemaServices cine){
@@ -33,7 +38,7 @@ public class Main {
         System.out.println("");
         System.out.println("-----------------------------");
         System.out.println("Registrando Cinemas a "+cinema);
-        String functionDate = "2020-12-18 15:30";
+        String functionDate = "2020-9-1 15:30";
         List<CinemaFunction> functions= new ArrayList<>();
         CinemaFunction funct1 = new CinemaFunction(new Movie("The Gentleman","Action"),functionDate);
         CinemaFunction funct2 = new CinemaFunction(new Movie("Pinocho","Childish"),functionDate);
@@ -73,14 +78,43 @@ public class Main {
             }       
         }
     }
+   
     
-    /*
-    public static void buyTickets(int row, int col, CinemaServices cinema, String date, String movieName){
-    
+    public static void buyTickets(int row, int col, String cineName, String date, String movieName, CinemaServices cinema){
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("-----------------------------");
+        System.out.println("Comprando ticket");
+        try {
+            cinema.buyTicket(row, col, cineName, date, movieName);
+        } catch (CinemaException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    public static void bookTickets(int row, int col, CinemaServices cinema, String date, String movieName){
-    
+    public static void filterByGender(String filtro, String name, String date,CinemaServices cine) throws CinemaException{
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("-----------------------------");
+        System.out.println("Filtrando");
+        List<CinemaFunction> cinf = cine.getFilterG(name, date, filtro);
+        for(CinemaFunction cf : cinf){
+            System.out.println(cf.getMovie().getName()+" "+cf.getMovie().getGenre());
+        }        
     }
-    */
+    
+    public static void filterByAvailabity(String filtro, String name, String date, CinemaServices cine) throws CinemaException{
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("-----------------------------");
+        System.out.println("Obteniendo funcion por disponibilidad");
+        List<CinemaFunction> cinf = cine.getFilterA(name, date, filtro);
+        for(CinemaFunction cf : cinf){
+            System.out.println(cf.getMovie().getName());
+        }
+    }
+    
 }
