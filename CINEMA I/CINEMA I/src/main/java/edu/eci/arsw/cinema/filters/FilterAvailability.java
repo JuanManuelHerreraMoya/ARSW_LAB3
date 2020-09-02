@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
  */
 @Service("FilterAvailability")
 public class FilterAvailability implements FilterCinema {
-
     @Override
     public List<CinemaFunction> filter(List<CinemaFunction> cinemaF, String filter) throws CinemaException {
         List<CinemaFunction> res = new ArrayList<>();

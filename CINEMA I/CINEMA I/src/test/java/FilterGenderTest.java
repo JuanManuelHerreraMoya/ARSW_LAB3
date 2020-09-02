@@ -51,6 +51,7 @@ public class FilterGenderTest {
         String functionDate;
         functionDate = "2020-9-1 15:30";
         FilterByGender fg = new FilterByGender();
+        
         List<CinemaFunction> functions= new ArrayList<>();
         CinemaFunction funct1 = new CinemaFunction(new Movie("The Gentleman","Action"),functionDate);
         CinemaFunction funct2 = new CinemaFunction(new Movie("Pinocho","Childish"),functionDate);
