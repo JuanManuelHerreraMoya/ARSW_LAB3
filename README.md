@@ -36,8 +36,10 @@ In this exercise we will build a class model for the logical layer of an applica
 
     1. Add the dependencies of Spring. 
     2. Add the Spring configuration. 
+![](https://github.com/JuanManuelHerreraMoya/ARSW_LAB3/blob/master/CINEMA%20I/CINEMA%20I/img/cml.PNG)
     3. Configure the application -by means of annotations- so that the persistence scheme is injected at the moment of creation of the 'CinemaServices' bean. 
-
+Hacemos uso de las siguientes etiquetas para que puedan ser inyectados los metodos de estas clases
+![](https://github.com/JuanManuelHerreraMoya/ARSW_LAB3/blob/master/CINEMA%20I/CINEMA%20I/img/Spring.PNG)
 
 2. Complete the getCinemaByName (), buyTicket (), and getFunctionsbyCinemaAndDate () operations. Implement everything required from the lower layers (for now, the available persistence scheme 'InMemoryCinemasPersistence') by adding the corresponding tests in 'InMemoryPersistenceTest'.
 
@@ -55,9 +57,15 @@ NOTA: Al ejecutar el metodo main, se evicencia la funcionalidad del punto 3 y 4,
        mvn package
        mvn exec:java -Dexec.mainClass="edu.eci.arsw.cinema.main.Main"
 
+![](https://github.com/JuanManuelHerreraMoya/ARSW_LAB3/blob/master/CINEMA%20I/CINEMA%20I/img/main1.PNG)
+![](https://github.com/JuanManuelHerreraMoya/ARSW_LAB3/blob/master/CINEMA%20I/CINEMA%20I/img/main2.PNG)
+
 5. It is wanted that the consultations realize a filtering process of the films to exhibit, said filters look for to give him the facility to the user to see the most suitable films according to his necessity. Adjust the application (adding the abstractions and implementations that you consider) so that the CinemaServices class is injected with one of two possible 'filters' (or possible future filters). The use of more than one at a time is not contemplated:
     1. (A) Filtered by gender: Allows you to obtain only the list of the films of a certain genre (of a certain cinema and a certain date) (The genre enters by parameter). 
     2. (B) Filtering by availability: Allows you to obtain only the list of films that have more than x empty seats (of a certain cinema and a certain date) (The number of seats is entered per parameter).
+   
+ ![](https://github.com/JuanManuelHerreraMoya/ARSW_LAB3/blob/master/CINEMA%20I/CINEMA%20I/img/gender.PNG)
+ ![](https://github.com/JuanManuelHerreraMoya/ARSW_LAB3/blob/master/CINEMA%20I/CINEMA%20I/img/filter2.PNG)
 
 6. Add the corresponding tests to each of these filters, and test their operation in the test program, verifying that only by changing the position of the annotations -without changing anything else-, the program returns the list of films filtered in the manner (A ) or in the way (B).
 
@@ -65,4 +73,5 @@ NOTA: Para ejecutar las pruebas debe usar el siguiente comando:
 
         mvn test
         
+![](https://github.com/JuanManuelHerreraMoya/ARSW_LAB3/blob/master/CINEMA%20I/CINEMA%20I/img/pruebas.PNG)
 
